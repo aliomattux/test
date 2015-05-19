@@ -19,30 +19,27 @@
  * needs please refer to http://www.magentocommerce.com for more information.
  *
  * @category    Mage
- * @package     Mage_Admin
- * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @package     Mage_Oauth
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-/** @var $installer Mage_Core_Model_Resource_Setup */
-$installer = $this;
-$installer->startSetup();
-
-// Add reset password link token column
-$installer->getConnection()->addColumn($installer->getTable('admin/user'), 'rp_token', array(
-    'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
-    'length' => 256,
-    'nullable' => true,
-    'default' => null,
-    'comment' => 'Reset Password Link Token'
-));
-
-// Add reset password link token creation date column
-$installer->getConnection()->addColumn($installer->getTable('admin/user'), 'rp_token_created_at', array(
-    'type' => Varien_Db_Ddl_Table::TYPE_TIMESTAMP,
-    'nullable' => true,
-    'default' => null,
-    'comment' => 'Reset Password Link Token Creation Date'
-));
-
-$installer->endSetup();
+/**
+ * OAuth nonce resource collection model
+ *
+ * @category    Mage
+ * @package     Mage_Oauth
+ * @author      Magento Core Team <core@magentocommerce.com>
+ */
+class Mage_Oauth_Model_Resource_Nonce_Collection extends Mage_Core_Model_Resource_Db_Collection_Abstract
+{
+    /**
+     * Initialize collection model
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+        $this->_init('oauth/nonce');
+    }
+}
